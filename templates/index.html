@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FlexQuest - Chatbot</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>FlexQuest - Chatbot</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Enviar</button>
+        </form>
+        {% if resposta %}
+        <div class="conversation">
+            <p class="usuario"><strong>Você:</strong> {{ pergunta }}</p>
+            <p class="chatbot"><strong>Chatbot:</strong> {{ resposta }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
