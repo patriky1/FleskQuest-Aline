@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from decouple import config
 
+
 GOOGLE_GEMINI_API_KEY = config('GOOGLE_GEMINI_API_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+    'markdownify.apps.MarkdownifyConfig',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -129,3 +131,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MARKDOWNIFY_STRIP = False
+MARKDOWNIFY_WHITELIST_TAGS = {
+ 'a', 'p', 
+ 'h1', 'h2', 'h3','h4', 'h5', 'h6', 'h7',
+ 'ul', 'li', 'span',
+}
