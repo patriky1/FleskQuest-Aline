@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .forms import PerguntaForm
 from django.conf import settings
 import json
-import markdown
+# import markdown
 from django import template
 # register = template.Library()
 # Configurar a chave da API do Google Gemini

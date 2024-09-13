@@ -1,6 +1,4 @@
-{% load static %}
-{% comment %} {% load index_filter %} {% endcomment %}
-{% load markdown_filter %}
+{% load static %} {% load markdownify %}
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -9,33 +7,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>FlexQuest - Chatbot</title>
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
       <h1>FlexQuest - Chatbot</h1>
       <div class="conversation">
         {% for conversa in conversas %}
-          <p class="usuario">
-            <strong>Você:</strong> {{ conversa.pergunta }}
-          </p>
-          {% comment %} {% if conversa.resposta.analysis %}
-            {{ conversa.resposta.analysis.title }}
-          {% endif %} {% endcomment %}
+        <p class="usuario"><strong>Você:</strong> {{ conversa.pergunta }}</p>
 
-          <div class="chatbot-content">
-            <strong>Chatbot:</strong>
-            <p>{% if conversa.resposta.analysis %}{{ conversa.resposta|markdown }}{% endif %}</p>
+        <div class="chatbot-content">
+          <strong>Chatbot: aaaa</strong>
+          <p>
+            {% if conversa.resposta.analysis %}{{ conversa.resposta.analysis
+            |markdownify }}{% endif %}
+          </p>
         </div>
         {% endfor %}
-        {% comment %} {% if resposta %}
-          <p class="usuario">
-            <strong>Você:</strong> {{ pergunta }}
-          </p>
-          <p class="chatbot">
-            <strong>Chatbot:</strong> {{ resposta }}
-          </p>
-        {% endif %} {% endcomment %}
       </div>
       <form method="post" class="form-actions">
         {% csrf_token %}
@@ -46,6 +37,5 @@
         </div>
       </form>
     </div>
-
   </body>
 </html>
