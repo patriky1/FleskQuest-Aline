@@ -14,6 +14,12 @@ from pathlib import Path
 import os
 from decouple import config
 
+# Definir a duração da sessão para 1 hora (3600 segundos)
+SESSION_COOKIE_AGE = 3600  # 1 hora em segundos
+
+# Opcional: configurar para que a sessão expire quando o navegador for fechado
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
 GOOGLE_GEMINI_API_KEY = config('GOOGLE_GEMINI_API_KEY')
 

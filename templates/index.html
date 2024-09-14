@@ -26,11 +26,12 @@
         </div>
         {% endfor %}
       </div>
-      <form method="post" class="form-actions">{% load static %} {% load markdownify %}
+      <form method="post" class="form-actions">
         {% csrf_token %}
         <div class="form-group">
           {{ form.as_p }}
           <button type="submit" class="btn btn-primary">Enviar</button>
+          <button type="submit" name="limpar_conversa" class="btn btn-secondary">Limpar Conversa</button>
         </div>
       </form>
     </div>
