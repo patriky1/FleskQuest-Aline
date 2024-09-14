@@ -15,7 +15,6 @@ model = genai.GenerativeModel("gemini-1.5-flash-latest", generation_config={"res
 texto_pre_definido = "você é um profissional em flaskquest e deve fazer uma análise detalhada sobre o tema:  "
 
 
-
 def index(request):
     if 'conversas' not in request.session:
         request.session['conversas'] = []  # Inicializa o histórico de conversa na sessão
@@ -24,10 +23,14 @@ def index(request):
     pergunta = None
 
     if request.method == 'POST':
+        if 'limpar_conversa' in request.POST:
+            # Limpar a conversa ao detectar o botão "Limpar Conversa"
+            request.session['conversas'] = []
+            request.session.modified = True
+            return render(request, 'index.html', {'form': PerguntaForm(), 'conversas': request.session['conversas']})
+
         form = PerguntaForm(request.POST)
         if form.is_valid():
-            #verificar se está funcionando corretamente a linha abaixo
-            request.session['conversas'] = []
             pergunta = form.cleaned_data['pergunta']
             # Adiciona o texto pré-definido à pergunta do usuário
             prompt = texto_pre_definido + pergunta
@@ -43,10 +46,8 @@ def index(request):
             
             # Armazena a pergunta e a resposta no histórico de conversas
             request.session['conversas'].append({'pergunta': pergunta, 'resposta': resposta})
-            request.session.modified = True  # Marca a sessão como modificada para garantir que seja salva
+            request.session.modified = True
     else:
         form = PerguntaForm()
-    
 
     return render(request, 'index.html', {'form': form, 'conversas': request.session['conversas']})
-##converter markdown para html
