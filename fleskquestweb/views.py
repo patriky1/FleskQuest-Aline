@@ -34,7 +34,7 @@ def index(request):
         if form.is_valid():
             pergunta = form.cleaned_data['pergunta']
             # Adiciona o texto pré-definido à pergunta do usuário
-            prompt = texto_pre_definido + pergunta
+            prompt = texto_pre_definido + pergunta + "Translate to Portuguese"
             try:
                 # Utiliza o modelo para gerar a resposta
                 response = model.generate_content(prompt)
