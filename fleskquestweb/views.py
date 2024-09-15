@@ -15,6 +15,7 @@ model = genai.GenerativeModel("gemini-1.5-flash-latest", generation_config={"res
 texto_pre_definido = "você é um profissional em flaskquest e deve fazer uma análise detalhada sobre o tema:  "
 
 
+
 def index(request):
     if 'conversas' not in request.session:
         request.session['conversas'] = []  # Inicializa o histórico de conversa na sessão
